@@ -1,6 +1,24 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using NineXCook.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+// Adicionar um serviço de conexão com banco de dados
+string conexao = builder.Configuration.GetConnectionString("Conexao");
+var versao = ServerVersion.AutoDetect(conexao);
+builder.Services.AddDbContext<AppDbContext>(
+    options => options.UseMySql(conexao, versao)
+);
+
+// Adicionar um serviço de gestão ao usuário
+// identity
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+.AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
+
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

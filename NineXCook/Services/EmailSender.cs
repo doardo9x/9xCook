@@ -9,7 +9,7 @@ public class EmailSender : IEmailSender
     {
         var mail = "gcook.app@outlook.com";
         var pw = "QV3E4khpZBEcL7K";
-
+        
         var client = new SmtpClient("smtp-mail.outlook.com", 587)
         {
             EnableSsl = true,

@@ -14,4 +14,32 @@ Criando e executando migrações
         Criar uma migração:
             dotnet ef migrations add criarBanco
         Aplicar a migração
-            dotnet ef database update e
+            dotnet ef database update
+
+
+        <!--  -->
+        dotnet-aspnet-codegenerator controller -name CategoriasController -m Categoria -dc AppDbContext -outDir Controllers -l
+
+
+        
+git config --global user.name doardo9x
+git config --global user.email eduardo010304@gmail.com
+
+Criando e executando migrações
+        Verificar ferramenta
+            dotnet ef
+
+        Instalar Ferramenta
+            dotnet tool install --global dotnet-ef --version 8.0.8
+
+        Atualizar ferramenta
+            dotnet tool update --global dotnet-ef --version 8.0.8
+
+        Criar uma migração:
+            dotnet ef migrations add criarBanco
+        Aplicar a migração
+            dotnet ef database update
+
+
+        <!--  -->
+        dotnet-aspnet-codegenerator controller -name CategoriasController -m Categoria -dc AppDbContext -outDir Controllers -l "~/Views/Shared/_LayoutAdmin.cshtml"

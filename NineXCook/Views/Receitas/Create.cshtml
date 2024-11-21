@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nome" class="control-label"></label>
@@ -35,14 +35,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Dificuldade" class="control-label"></label>
-                <select asp-for="Dificuldade" class="form-control"></select>
+                <select asp-for="Dificuldade" class="form-control" asp-items="Html.GetEnumSelectList<Dificuldade>()"></select>
                 <span asp-validation-for="Dificuldade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
+                <img id='Preview'>
+                <input asp-for="Foto" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif,." />
+             </div>
             <div class="form-group">
                 <label asp-for="Preparo" class="control-label"></label>
                 <input asp-for="Preparo" class="form-control" />
@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="CategoriaId" class="control-label"></label>
-                <select asp-for="CategoriaId" class ="form-control" asp-items="ViewBag.CategoriaId"></select>
+                <select asp-for="CategoriaId" class ="form-select" asp-items="ViewBag.CategoriaId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -63,3 +63,17 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+@section Scripts {
+    <partial name="_ValidationScriptsPartial"></partial>
+    <script>
+        window.addEventListener('load', function() {
+            document.querySelector('input[type=file]')
+            .addEventListener('change', function(){
+                if (this.files && this.files[0]) {
+                    var img = document.getElementById('Preview');
+                    img.src = URL.createObjectURL(this.files[0])
+                }
+            })
+        })
+    </script>
+}

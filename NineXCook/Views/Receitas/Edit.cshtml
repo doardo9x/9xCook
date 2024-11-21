@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -36,14 +36,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="Dificuldade" class="control-label"></label>
-                <select asp-for="Dificuldade" class="form-control"></select>
+                <select asp-for="Dificuldade" class="form-control" asp-items="Html.GetEnumSelectList<Dificuldade>()"></select>
                 <span asp-validation-for="Dificuldade" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Foto" class="control-label"></label>
-                <input asp-for="Foto" class="form-control" />
-                <span asp-validation-for="Foto" class="text-danger"></span>
-            </div>
+                <img id='Preview'>
+                <input asp-for="Foto" type="file" class="form-control" accept=".jpg,.png,.jpeg,.gif,." />
+        </div>
             <div class="form-group">
                 <label asp-for="Preparo" class="control-label"></label>
                 <input asp-for="Preparo" class="form-control" />
